@@ -3,4 +3,6 @@ project(Problema_1)
 
 set(CMAKE_CXX_STANDARD 26)
 
-add_executable(Problema_1 main.cpp)
+add_executable(Problema_1 main.cpp
+        stack.cpp
+        stack.h)

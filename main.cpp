@@ -1,31 +1,75 @@
 #include <iostream>
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the
-    // <b>lang</b> variable name to see how CLion can help you rename it.
-    auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+#include "stack.h"
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code.
-        // We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/>
-        // breakpoint for you, but you can always add more by pressing
-        // <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
-    }
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code.
-        // We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/>
-        // breakpoint for you, but you can always add more by pressing
-        // <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
-    }
-    return 0;
+using namespace std;
+
+bool is_prime(const int n) {
+    if (n < 2) return false;
+    if (n == 2) return true;
+    if (n % 2 == 0) return false;
+    for (int d = 3; d * d <= n; d += 2)
+        if (n % d == 0) return false;
+    return true;
 }
 
-// TIP See CLion help at <a
-// href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>.
-//  Also, you can try interactive lessons for CLion by selecting
-//  'Help | Learn IDE Features' from the main menu.
+stack prime_factorization(int n) // Outputs a stack with the prime factors of n
+{
+    stack *head = new stack();
+    for (int d = 2; d <= n; d++)
+        if (is_prime(d)) {
+            while (n % d == 0) {
+                head->push(d);
+                n /= d;
+            }
+        }
+    return *head;
+}
+
+int main() {
+    int op;
+    do {
+        cout << "\nDATA STRUCTURES AND ALGORITHMS PROJECT\n\n";
+        cout << "1. Prime factorization of a number" << endl;
+        cout << "2." << endl;
+        cout << "0. Exit" << endl;
+        cout << "Choose an option: ";
+        cin >> op;
+        switch (op) {
+            case 1: {
+                int op1;
+                int n;
+                cout << "\nPrime factorization of a number" << endl;
+                do {
+                    cout << "\nEnter a number: ";
+                    cin >> n;
+                    stack factors = prime_factorization(n);
+                    cout << "The prime factorization of " << n << " is: ";
+                    factors.print();
+                    cout << "The prime factorization of " << n << " in exponential form is: ";
+                    factors.print_in_exponential_form();
+
+                    cout << "\n1. Calculate another factorization" << endl;
+                    cout << "0. Back" << endl;
+                    cout << "Choose an option: ";
+                    cin >> op1;
+                } while (op1 == 1);
+            }
+            break;
+
+            case 2: {
+                // Problem 2
+            }
+            break;
+
+            case 0:
+                cout << "Exiting program..." << endl;
+                break;
+
+            default:
+                cout << "Invalid option!" << endl;
+                break;
+        }
+    } while (op != 0);
+    return 0;
+}
