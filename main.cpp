@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "stack.h"
+#include "my_stack.h"
 
 using namespace std;
 
@@ -13,9 +13,9 @@ bool is_prime(const int n) {
     return true;
 }
 
-stack prime_factorization(int n) // Outputs a stack with the prime factors of n
+my_stack prime_factorization(int n) // Outputs a stack with the prime factors of n
 {
-    stack *head = new stack();
+    my_stack *head = new my_stack();
     for (int d = 2; d <= n; d++)
         if (is_prime(d)) {
             while (n % d == 0) {
@@ -43,7 +43,7 @@ int main() {
                 do {
                     cout << "\nEnter a number: ";
                     cin >> n;
-                    stack factors = prime_factorization(n);
+                    my_stack factors = prime_factorization(n);
                     cout << "The prime factorization of " << n << " is: ";
                     factors.print();
                     cout << "The prime factorization of " << n << " in exponential form is: ";

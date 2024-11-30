@@ -6,17 +6,17 @@
 #define STACK_H
 
 
-class stack {
+class my_stack {
     int value;
-    stack *next;
+    my_stack *next;
 
 public:
-    stack() = default;
+    my_stack() = default;
 
-    stack(int value, stack *next) : value(value), next(next) {
+    my_stack(const int value, my_stack *next) : value(value), next(next) {
     }
 
-    ~stack() = default;
+    ~my_stack() = default;
 
     void push(int value); // Adds a new element to the stack
     void pop(); // Removes the top element
