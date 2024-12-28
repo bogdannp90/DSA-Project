@@ -1,27 +1,26 @@
-//
-// Created by Bogdan on 11/30/2024.
-//
-
-#include "my_stack.h"
+#include "myStack.h"
 #include <iostream>
 
-void my_stack::push(const int value) {
-    my_stack *new_node = new my_stack(value, this->next);
+// Function to add a new element to the stack
+void myStack::push(const int value) {
+    auto *new_node = new myStack(value, this->next);
     this->next = new_node;
 }
 
-void my_stack::pop() {
+// Function to remove the top element from the stack
+void myStack::pop() {
     if (this->next == nullptr) {
         std::cout << "Stack is empty!" << std::endl;
         return;
     }
-    const my_stack *temp = this->next;
+    const myStack *temp = this->next;
     this->next = this->next->next;
     delete temp;
 }
 
-void my_stack::print() const {
-    const my_stack *temp = this->next;
+// Function to print the prime factors stored in the stack
+void myStack::print() const {
+    const myStack *temp = this->next;
     while (temp->next != nullptr) {
         std::cout << temp->value << " * ";
         temp = temp->next;
@@ -30,8 +29,9 @@ void my_stack::print() const {
     std::cout << std::endl;
 }
 
-void my_stack::print_in_exponential_form() const {
-    const my_stack *temp = this->next;
+// Function to print the prime factors in exponential form
+void myStack::printInExponentialForm() const {
+    const myStack *temp = this->next;
     while (temp != nullptr) {
         int exponent = 1;
         while (temp->next != nullptr and (temp->next)->value == temp->value) {

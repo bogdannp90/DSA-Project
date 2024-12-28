@@ -1,75 +1,56 @@
 #include <iostream>
+#include "include/handleProblem1.h"
+#include "include/inputValidation.h"
 
-#include "my_stack.h"
+// Function to display the main menu
+void displayMainMenu();
 
-using namespace std;
-
-bool is_prime(const int n) {
-    if (n < 2) return false;
-    if (n == 2) return true;
-    if (n % 2 == 0) return false;
-    for (int d = 3; d * d <= n; d += 2)
-        if (n % d == 0) return false;
-    return true;
-}
-
-my_stack prime_factorization(int n) // Outputs a stack with the prime factors of n
-{
-    my_stack *head = new my_stack();
-    for (int d = 2; d <= n; d++)
-        if (is_prime(d)) {
-            while (n % d == 0) {
-                head->push(d);
-                n /= d;
-            }
-        }
-    return *head;
-}
+enum MenuOption {
+    EXIT = 0,
+    PRIME_FACTORIZATION
+};
 
 int main() {
-    int op;
-    do {
-        cout << "\nDATA STRUCTURES AND ALGORITHMS PROJECT\n\n";
-        cout << "1. Prime factorization of a number" << endl;
-        cout << "2." << endl;
-        cout << "0. Exit" << endl;
-        cout << "Choose an option: ";
-        cin >> op;
-        switch (op) {
-            case 1: {
-                int op1;
-                int n;
-                cout << "\nPrime factorization of a number" << endl;
-                do {
-                    cout << "\nEnter a number: ";
-                    cin >> n;
-                    my_stack factors = prime_factorization(n);
-                    cout << "The prime factorization of " << n << " is: ";
-                    factors.print();
-                    cout << "The prime factorization of " << n << " in exponential form is: ";
-                    factors.print_in_exponential_form();
+    int option;
 
-                    cout << "\n1. Calculate another factorization" << endl;
-                    cout << "0. Back" << endl;
-                    cout << "Choose an option: ";
-                    cin >> op1;
-                } while (op1 == 1);
+    std::cout << "Data Structures and Algorithms Project" << std::endl;
+    std::cout << "Pirvu Constantin Bogdan, 1331b" << std::endl;
+
+    do {
+        displayMainMenu();
+        option = handleUserInput<int>("Choose an option: ",
+            [](const int x) { return x >= 0 && x <= 2; },
+            "Invalid option! Please enter a number between 0 and 2!\nChoose an option: ");
+
+        switch (option) {
+            case PRIME_FACTORIZATION: {
+                handleProblem1();
             }
             break;
 
             case 2: {
-                // Problem 2
+                std::cout << "Still working on it!" << std::endl;
             }
             break;
 
-            case 0:
-                cout << "Exiting program..." << endl;
+            case EXIT:
+                std::cout << "Exiting program." << std::endl;
                 break;
 
             default:
-                cout << "Invalid option!" << endl;
+                std::cout << "Invalid option!" << std::endl;
                 break;
         }
-    } while (op != 0);
+    } while (option != EXIT);
     return 0;
+}
+
+/**
+ * @brief Displays the main menu options to the user.
+ */
+void displayMainMenu() {
+    std::cout << std::endl << "Main Menu" << std::endl;
+    std::cout << "1. Prime factorization" << std::endl;
+    std::cout << "2. Problem 2" << std::endl;
+    std::cout << "0. Exit" << std::endl;
 }
