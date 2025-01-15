@@ -10,4 +10,6 @@ add_executable(Problema_1 main.cpp
         include/myStack.h
         include/inputValidation.h
         include/handleProblem1.h
-        src/handleProblem1.cpp)
+        src/handleProblem1.cpp
+        src/handleProblem2.cpp
+        include/handleProblem2.h)

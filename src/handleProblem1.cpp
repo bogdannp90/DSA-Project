@@ -50,7 +50,7 @@ void handleProblem1() {
 
         // Ask the user if they want to calculate another factorization
         std::cout << "\n1. Calculate another factorization" << std::endl;
-        std::cout << "0. Back" << std::endl;
+        std::cout << "0. Back to main menu" << std::endl;
         option = handleUserInput<int>("Choose an option: ",
             [](int x) { return x >= 0 && x <= 1; },
             "Invalid option! Please enter 0 or 1: ");

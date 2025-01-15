@@ -1,4 +1,6 @@
 #include <iostream>
+
+#include "include/handleProblem2.h"
 #include "include/handleProblem1.h"
 #include "include/inputValidation.h"
 
@@ -7,7 +9,8 @@ void displayMainMenu();
 
 enum MenuOption {
     EXIT = 0,
-    PRIME_FACTORIZATION
+    PRIME_FACTORIZATION,
+    DIJKSTRA
 };
 
 int main() {
@@ -28,8 +31,8 @@ int main() {
             }
             break;
 
-            case 2: {
-                std::cout << "Still working on it!" << std::endl;
+            case DIJKSTRA: {
+                handleProblem2();
             }
             break;
 
@@ -51,6 +54,6 @@ int main() {
 void displayMainMenu() {
     std::cout << std::endl << "Main Menu" << std::endl;
     std::cout << "1. Prime factorization" << std::endl;
-    std::cout << "2. Problem 2" << std::endl;
+    std::cout << "2. Dijkstra's Algorithm" << std::endl;
     std::cout << "0. Exit" << std::endl;
 }
